@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Calculator from './Calculator';
 
-import store from './store';
-
-import { bindActionCreators } from 'redux';
-
 import { sumValueAction, subtractValueAction } from './actions';
+import connect from './connect';
 
 class App extends Component {
     constructor(props) {
@@ -37,26 +34,14 @@ class App extends Component {
     }
 }
 
-const boundActions = bindActionCreators(
+export default connect(
+    state => {
+        return {
+            calculator: state.calculator,
+        };
+    },
     {
         sumValueAction,
         subtractValueAction,
     },
-    store.dispatch,
-);
-
-class AppWrapper extends Component {
-    constructor(props) {
-        super(props);
-
-        store.subscribe(() => {
-            this.forceUpdate();
-        });
-    }
-    render() {
-        const calculator = store.getState().calculator;
-        return <App {...boundActions} calculator={calculator} />;
-    }
-}
-
-export default AppWrapper;
+)(App);
