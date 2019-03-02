@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Calculator from './Calculator';
 
 class App extends Component {
     constructor(props) {
@@ -15,18 +16,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <h3>
-                    Starting number: <strong>1000</strong>
-                </h3>
-                <h1>
-                    Current sum: <strong>1000</strong>
-                </h1>
-                <div>
-                    <button onClick={this.handleSumClick}>Sum a random number</button>
-                </div>
-                <div>
-                    <button onClick={this.handleSubtractClick}>Subtract a random number</button>
-                </div>
+                <Calculator />
             </div>
         );
     }
