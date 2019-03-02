@@ -8,36 +8,23 @@ import { bindActionCreators } from 'redux';
 
 import { sumValueAction, subtractValueAction } from './actions';
 
-const boundActions = bindActionCreators(
-    {
-        sumValueAction,
-        subtractValueAction,
-    },
-    store.dispatch,
-);
-
 class App extends Component {
     constructor(props) {
         super(props);
 
         this.handleSubtractClick = this.handleSubtractClick.bind(this);
         this.handleSumClick = this.handleSumClick.bind(this);
-
-        store.subscribe(() => {
-            window.console.log('state', store.getState().calculator);
-            this.forceUpdate();
-        });
     }
 
     handleSumClick() {
-        boundActions.sumValueAction();
+        this.props.sumValueAction();
     }
     handleSubtractClick() {
-        boundActions.subtractValueAction();
+        this.props.subtractValueAction();
     }
 
     render() {
-        const calculator = store.getState().calculator;
+        const { calculator } = this.props;
         return (
             <div className="App">
                 <Calculator
@@ -50,4 +37,26 @@ class App extends Component {
     }
 }
 
-export default App;
+const boundActions = bindActionCreators(
+    {
+        sumValueAction,
+        subtractValueAction,
+    },
+    store.dispatch,
+);
+
+class AppWrapper extends Component {
+    constructor(props) {
+        super(props);
+
+        store.subscribe(() => {
+            this.forceUpdate();
+        });
+    }
+    render() {
+        const calculator = store.getState().calculator;
+        return <App {...boundActions} calculator={calculator} />;
+    }
+}
+
+export default AppWrapper;
