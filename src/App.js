@@ -3,7 +3,18 @@ import './App.css';
 import Calculator from './Calculator';
 
 import store from './store';
-import rand from './rand';
+
+import { bindActionCreators } from 'redux';
+
+import { sumValueAction, subtractValueAction } from './actions';
+
+const boundActions = bindActionCreators(
+    {
+        sumValueAction,
+        subtractValueAction,
+    },
+    store.dispatch,
+);
 
 class App extends Component {
     constructor(props) {
@@ -19,16 +30,10 @@ class App extends Component {
     }
 
     handleSumClick() {
-        store.dispatch({
-            type: 'SUM',
-            value: rand(1, 100),
-        });
+        boundActions.sumValueAction();
     }
     handleSubtractClick() {
-        store.dispatch({
-            type: 'SUBTRACT',
-            value: rand(1, 100),
-        });
+        boundActions.subtractValueAction();
     }
 
     render() {
