@@ -24,6 +24,9 @@ class Calculator extends Component {
                 <h1>
                     Current sum: <strong>1000</strong>
                 </h1>
+                <h5>
+                    This is the operation number <strong>X</strong>
+                </h5>
                 <div>
                     <button onClick={this.handleSumClick}>Sum a random number</button>
                 </div>
