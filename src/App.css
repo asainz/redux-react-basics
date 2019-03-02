@@ -6,4 +6,21 @@ body {
     margin-top: 10em;
     text-align: center;
     color: #e2e2e2;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+strong {
+    font-size: 24px;
+    color: tomato;
+}
+
+button {
+    background: transparent;
+    padding: 1em;
+    color: #e2e2e2;
+    width: 50%;
+    margin-bottom: 16px;
+    cursor: pointer;
 }
